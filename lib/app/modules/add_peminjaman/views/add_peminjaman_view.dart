@@ -14,36 +14,39 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
         title: Text('Pinjam Buku ${Get.parameters['judul'].toString()}'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          TextFormField(
-            controller: controller.tanggalPinjamController,
-            decoration: InputDecoration(hintText: "Masukan Tanggal Pinjam"),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Tanggal Pinjam tidak boleh kosong";
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: controller.tanggalKembaliController,
-            decoration: InputDecoration(hintText: "Masukan Tanggal Kembali"),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Tanggal Kembali tidak boleh kosong";
-              }
-              return null;
-            },
-          ),
-          Obx(() => controller.loading.value ?
-          CircularProgressIndicator() :
-          ElevatedButton(onPressed: () {
-            controller.post(
-            );
-          }, child: Text("Pinjam"))
-          ),
-        ],
+      body: Form(
+        key: controller.formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: controller.tanggalPinjamController,
+              decoration: InputDecoration(hintText: "Masukan Tanggal Pinjam"),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Tanggal Pinjam tidak boleh kosong";
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              controller: controller.tanggalKembaliController,
+              decoration: InputDecoration(hintText: "Masukan Tanggal Kembali"),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Tanggal Kembali tidak boleh kosong";
+                }
+                return null;
+              },
+            ),
+            Obx(() => controller.loading.value ?
+            CircularProgressIndicator() :
+            ElevatedButton(onPressed: () {
+              controller.post(
+              );
+            }, child: Text("Pinjam"))
+            ),
+          ],
+        ),
       ),
     );
   }

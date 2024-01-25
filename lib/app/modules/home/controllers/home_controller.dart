@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:peminjaman_perpustakan_kelas_b/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -20,4 +21,13 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
+
+  void buku(){
+    Get.offAllNamed(Routes.BOOK);
+  }
+  void peminjaman(){
+    Get.offAllNamed(Routes.PEMINJAMAN);
+
+
+  }
 }

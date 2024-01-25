@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:peminjaman_perpustakan_kelas_b/app/data/constant/endpoint.dart';
+import 'package:peminjaman_perpustakan_kelas_b/app/data/model/response_login.dart';
 import 'package:peminjaman_perpustakan_kelas_b/app/data/provider/api_provider.dart';
 import 'package:peminjaman_perpustakan_kelas_b/app/data/provider/storage_provider.dart';
 import 'package:peminjaman_perpustakan_kelas_b/app/routes/app_pages.dart';
@@ -54,6 +55,8 @@ class LoginController extends GetxController {
               "password": passwordController.text.toString()
             }));
         if (response.statusCode == 200) {
+          ResponseLogin responseLogin=ResponseLogin.fromJson(response.data);
+          await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id!.toString());
           await StorageProvider.write(StorageKey.status, "Logged");
           Get.offAllNamed(Routes.HOME);
         } else {

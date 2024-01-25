@@ -48,6 +48,7 @@ class LoginView extends GetView<LoginController> {
 
               ElevatedButton(onPressed: (){
                 Get.offAllNamed(Routes.REGISTER);
+
               }, child: Text("Register"))
 
             ]
